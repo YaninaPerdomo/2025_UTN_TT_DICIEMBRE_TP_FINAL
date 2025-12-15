@@ -1,41 +1,47 @@
 import React, { use } from 'react'
 import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar.jsx'
-import { useParams } from 'react-router';
-
+import { useParams } from 'react-router-dom';
+import './MessagesScreen.css';
 import { useState, useEffect } from 'react';
 import { getContactById } from '../../services/contactService.js';
-
-
-
+import ChatHeader from '../../Components/ChatHeader/ChatHeader.jsx';
 
 export default function MessagesScreen() {
     const parametros_url = useParams();
     const contact_id = parametros_url.contact_id;
     const [contactSelected, setContactSelected] = useState(null);
     const [loadingContact, setLoadingContact] = useState(true);
-    let const_contact = null;
+    const [messages, setMessages] = useState([]); 
 
-
+    const [newMessage, setNewMessage] = useState("");
+    
     function loadingContactById() {
       setLoadingContact(true);
       setTimeout(
         function() {
-          const_contact = getContactById(contact_id);
-          setContactSelected(const_contact);
+          const fetched_contact = getContactById(contact_id); 
+          setContactSelected(fetched_contact);
+          
+          
+          if (fetched_contact && fetched_contact.messages) {
+            setMessages(fetched_contact.messages);
+          } else {
+            setMessages([]);
+          }
+
           setLoadingContact(false);
         },
         2000
       )
     }
 
-        
-    
     useEffect(
       function() {
         loadingContactById();
       },
-      [parametros_url, contact_id]
+      [contact_id] 
     );
+    
     if (loadingContact) {
       return (
         <div>Cargando contacto...</div>
@@ -46,24 +52,46 @@ export default function MessagesScreen() {
         <div>Contacto no encontrado</div>
       )
     }
-   return (
-        <div>
-            <h1>Pantalla de mensajes</h1>
-            <ContactSidebar contact={contactSelected} />
-            {
-                loadingContact 
-                ? <div>Cargando..</div>
-                : <>
-                    <h2>Contacto seleccionado: {contactSelected.contact_name}</h2>
-                    <h3>Id: {contactSelected.contact_id}</h3>
-                    <img src={contactSelected.contact_avatar} alt={`Avatar de ${contactSelected.contact_name}`} />
-                    <p>Último mensaje: {contactSelected.last_message_content}</p>
-                    
-                  </>
+    
+    function sendMessage() {
+      if (newMessage.trim() === "") return; // Previene enviar mensajes vacíos
+
+      const newMsg = {
+        id: Date.now(), 
+        text: newMessage,
+        from: "me"
+      };
+      setMessages([...messages, newMsg]);
+      setNewMessage("");
+    }
+
+  return (
+    <>
+      <ChatHeader contact={contactSelected} />
+      <div className="messages-area">
+        {
+          messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`message ${msg.from === "me" ? "sent" : "received"}`}
+            >
+              {msg.text}
+            </div>
+          ))}
+      </div>
+
+     <div className="input-area">
+        <input
+            placeholder="Escribe un mensaje"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            onKeyDown={(e) => {
+            if (e.key === "Enter" && newMessage.trim() !== "") {
+                sendMessage();
             }
-            
-        </div>
-    )
+        }}
+        />
+    </div>
+    </>
+  )
 }
-
-

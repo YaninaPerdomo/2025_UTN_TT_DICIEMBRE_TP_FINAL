@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactSidebar from '../../components/ContactSidebar/ContactSidebar'
+import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar.jsx'
 
 export default function ChatScreen() {
   return (

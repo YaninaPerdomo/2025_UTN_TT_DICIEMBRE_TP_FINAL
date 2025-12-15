@@ -1,44 +1,34 @@
 import { createContext, useEffect, useState } from "react";
-import { Outlet } from "react-router";
 import { getContactList } from "../services/contactService";
-export const ContactListContext = createContext()
 
-const ContactListContextProvider = () => {
-    const [contactState, setContactState] = useState([])
-    const [loadingContactsState, setLoadingContactState] = useState(true)
+export const ContactListContext = createContext();
 
 
-    function loadContactList (){
-        setLoadingContactState(true)
-        setTimeout(
-            function () {
-                console.log('Cargando la lista de contactos')
-                const contact_list = getContactList()
-                setContactState(contact_list)
-                setLoadingContactState(false)
-            },
-            2000
-        )
-        
-    }
+const ContactListContextProvider = ({ children }) =>{ 
+const [contactState, setContactState] = useState([]);
+const [loadingContactsState, setLoadingContactsState] = useState(true);
 
-    useEffect (
-        loadContactList,
-        []
-    )
+function loadContactList() {
+    setLoadingContactsState(true);
+    setTimeout(() => {
+    const contact_list = getContactList();
+    setContactState(contact_list);
+    setLoadingContactsState(false);
+    }, 2000); }
 
-    const providerValues = {
-        contactState,
-        loadingContactsState,
-        loadContactList,
-    }
+useEffect(loadContactList, []);
 
-    return (
-        <ContactListContext.Provider value={providerValues}>
-            <Outlet />
-        </ContactListContext.Provider>
-    )
-}
+const providerValues = {
+    contactState,
+    loadingContactsState,
+    loadContactList,
+};
 
+return (
+    <ContactListContext.Provider value={providerValues}>
+        {children} 
+    </ContactListContext.Provider>
+);
+};
 
-export default ContactListContextProvider
+export default ContactListContextProvider;

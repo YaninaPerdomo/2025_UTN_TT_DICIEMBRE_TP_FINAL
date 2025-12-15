@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.whatsapp-container {
+  display: flex;
+  height: 100vh;
+  background: #f0f2f5;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 360px;
+  background-color: #ffffff;
+  border-right: 1px solid #e9edef;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CHAT AREA */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar-header {
+    background-color: #FFFFFF;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e9edef;
+}
+
+.sidebar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.sidebar-title {
+    color: #00a884;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sidebar-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.sidebar-actions button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #54656f;
+}
+
+.sidebar-actions button:hover {
+    color: #111b21;
+}
+
+.sidebar-search {
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+
+.sidebar-search input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+}
