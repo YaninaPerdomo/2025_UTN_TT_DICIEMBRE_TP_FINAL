@@ -1,39 +1,28 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 import { useParams } from "react-router-dom"; 
-import { getContactById } from "../services/contactService";
+import { ContactListContext } from "./ContactListContext";
 
 export const ContactDetailContext = createContext()
 
 
 const ContactDetailContextProvider = ({ children }) => {
     
-    const parametros_url = useParams()
-    const contact_id = parametros_url.contact_id
+    const { contact_id } = useParams()
+    const { contactState, loadingContactsState } = useContext(ContactListContext)
     
-    const [contactSelected, setContactSelected] = useState(null)
-    const [loadingContact, setLoadingContact] = useState(true)
-    
-    function loadContactById (){
-        setLoadingContact(true)
-        setTimeout(
-            function () {
-                const contact = getContactById(contact_id) 
-                setContactSelected(contact)
-                setLoadingContact(false)
-            },
-            2000
-        )
+    const contactSelected = contactState.find(contact => Number(contact.contact_id) === Number(contact_id))
+
+    const providerValues = {
+        contactSelected,
+        loadingContact: loadingContactsState,
     }
 
-    useEffect(() => {
-        loadContactById()
-    }, [contact_id])
-
     return (
-        <ContactDetailContext.Provider value={{ contactSelected, loadingContact }}>
+        <ContactDetailContext.Provider value={providerValues}>
             {children}
         </ContactDetailContext.Provider>
     )
 }
+
 
 export default ContactDetailContextProvider

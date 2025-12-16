@@ -39,6 +39,12 @@ const contact_data = [
         from: "them",
         created_at:  new Date(),
         },
+        {
+        id: 2,
+        text: 'Todo bien, y vos?',
+        from: "me",
+        created_at:  new Date(),
+        },
     ],
     
 },

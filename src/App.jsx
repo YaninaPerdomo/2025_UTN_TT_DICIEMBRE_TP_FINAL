@@ -1,10 +1,11 @@
-import { useState } from "react";
 import { Route, Routes, Outlet } from "react-router";
 import MessagesScreen from "./Screens/MessagesScreen/MessagesScreen";
 import ContactListContextProvider from "./Context/ContactListContext";
 import ContactDetailContextProvider from "./Context/ContactDetailContext";
+import WelcomeScreen from "./Screens/WelcomeScreen/WelcomeScreen";
 import "../App.css";
 import ContactSidebar from "./Components/ContactSidebar/ContactSidebar";
+import NewContact from "./Screens/NewContact/NewContact";
 
 function WhatsappLayout() {
   return (
@@ -25,7 +26,9 @@ function App() {
       <Routes>
         <Route path="/" element={<WhatsappLayout />}>
           
-          <Route index element={<div>Seleccioná un chat</div>} />
+          <Route index element={<WelcomeScreen />} />
+          
+          <Route path="new-contact" element={<NewContact />} />
 
           <Route
             path="chat/:contact_id/messages"

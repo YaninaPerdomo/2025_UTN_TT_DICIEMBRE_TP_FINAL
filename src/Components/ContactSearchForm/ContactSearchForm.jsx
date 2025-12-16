@@ -1,9 +1,10 @@
-
-
-
 export default function ContactSearchForm() {
   return (
-    <div>ContactSearchForm</div>
-  )
+    <div className="contact-search">
+      <input
+        type="text"
+        placeholder="Buscar un chat o iniciar uno nuevo"
+      />
+    </div>
+  );
 }
-

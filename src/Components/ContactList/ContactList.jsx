@@ -5,7 +5,7 @@ import './ContactList.css'
 
 export default function ContactList() {
     
-    const { contactState, loadingContactsState } = useContext(ContactListContext)
+    const { contactState, loadingContactsState, filteredContacts } = useContext(ContactListContext)
     console.log('CONTACTOS DESDE LIST', contactState)
 
     
@@ -15,7 +15,7 @@ export default function ContactList() {
         )
     }
     
-    if(contactState.length === 0){
+    if(filteredContacts.length === 0){
         return (
             <div>No hay contactos</div>
         )
@@ -24,7 +24,7 @@ export default function ContactList() {
     return (
         <div>
             {
-                contactState.map(function (contact) {
+                filteredContacts.map(function (contact) {
             return (
             <NavLink
             key={contact.contact_id}
@@ -43,7 +43,11 @@ export default function ContactList() {
             </div>
 
             <div>
-                <p>{contact.last_message_content}</p>
+                <p>{
+                    contact.messages && contact.messages.length > 0 
+                    ? contact.messages[contact.messages.length - 1].text 
+                    : "No hay mensajes"
+                }</p>
 
                 {contact.contact_unseen_messages > 0 && (
                 <span>{contact.contact_unseen_messages}</span>
