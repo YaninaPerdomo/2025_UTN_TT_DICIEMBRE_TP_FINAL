@@ -1,13 +1,13 @@
 .messages-area {
   flex: 1;
   padding: 16px;
-  background: #efeae2; /* fondo tipo WhatsApp */
+  background: #efeae2;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
-/* Burbujas */
+
 .message {
   max-width: 60%;
   padding: 8px 12px;
@@ -18,24 +18,25 @@
   word-wrap: break-word;
 }
 
-/* Recibidos */
+
 .message.received {
   background: #ffffff;
   align-self: flex-start;
   border-top-left-radius: 0;
 }
 
-/* Enviados */
+
 .message.sent {
   background: #d9fdd3;
   align-self: flex-end;
   border-top-right-radius: 0;
 }
+
 .input-area {
   padding: 10px;
   background: #f0f2f5;
   border-top: 1px solid #ddd;
-flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .input-area input {
@@ -45,10 +46,37 @@ flex-shrink: 0;
   border: none;
   outline: none;
   background: #ffffff;
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .chat-header {
   height: 60px;
   flex-shrink: 0;
+}
+
+/* Dark Mode */
+.dark-mode .messages-area {
+  background-color: #0b141a;
+  background-image: none;
+  /* Opcional: si quisieras quitar el patrón por defecto */
+}
+
+.dark-mode .message.received {
+  background-color: #202c33;
+  color: #e9edef;
+}
+
+.dark-mode .message.sent {
+  background-color: #005c4b;
+  color: #e9edef;
+}
+
+.dark-mode .input-area {
+  background-color: #202c33;
+  border-top: 1px solid #202c33;
+}
+
+.dark-mode .input-area input {
+  background-color: #2a3942;
+  color: #e9edef;
 }

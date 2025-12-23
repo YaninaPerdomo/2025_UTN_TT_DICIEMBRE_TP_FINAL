@@ -1,15 +1,23 @@
+import { useContext } from "react";
 import { Route, Routes, Outlet } from "react-router";
 import MessagesScreen from "./Screens/MessagesScreen/MessagesScreen";
 import ContactListContextProvider from "./Context/ContactListContext";
 import ContactDetailContextProvider from "./Context/ContactDetailContext";
+import { ThemeContext } from "./Context/ThemeContext";
 import WelcomeScreen from "./Screens/WelcomeScreen/WelcomeScreen";
 import "../App.css";
 import ContactSidebar from "./Components/ContactSidebar/ContactSidebar";
 import NewContact from "./Screens/NewContact/NewContact";
 
+import { useLocation } from "react-router";
+
 function WhatsappLayout() {
+  const location = useLocation();
+  const isMobileChatView = location.pathname !== "/" && !location.pathname.endsWith("whatsapp-web-clone/"); 
+  const { isDark } = useContext(ThemeContext);
+
   return (
-    <div className="whatsapp-container">
+    <div className={`whatsapp-container ${isMobileChatView ? 'mobile-chat-active' : ''} ${isDark ? 'dark-mode' : ''}`}>
       <div className="sidebar">
         <ContactSidebar />
       </div>

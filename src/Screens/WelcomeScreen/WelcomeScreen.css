@@ -1,4 +1,4 @@
-.welcome-container {
+.container-bienvenida {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,21 +10,32 @@
     border-bottom: 6px solid #25d366;
 }
 
-.welcome-logo {
+.logo-bienvenida {
     width: 120px;
     height: 120px;
     margin-bottom: 30px;
     opacity: 0.8;
 }
 
-.welcome-container h1 {
+.container-bienvenida h1 {
     font-weight: 300;
     margin-bottom: 15px;
     font-size: 32px;
 }
 
-.welcome-container p {
+.container-bienvenida p {
     font-size: 14px;
     color: #8696a0;
     margin: 5px 0;
+}
+
+/* Dark Mode */
+.dark-mode .container-bienvenida {
+    background-color: #222e35;
+    color: #e9edef;
+    border-bottom-color: #00a884;
+}
+
+.dark-mode .container-bienvenida p {
+    color: #8696a0;
 }

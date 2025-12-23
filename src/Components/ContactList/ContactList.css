@@ -1,51 +1,43 @@
-/* Colores y fuentes base para parecerse a WhatsApp Web */
 body {
-    background-color: #E5DDD5; /* Fondo "trasero" */
-    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; /* Fuente típica */
+    background-color: #E5DDD5;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* El contenedor principal de la lista de contactos (Añade esta clase a un div padre en tu JSX) */
 .contact-list-container {
-    background-color: #FFFFFF; /* La lista de chats es blanca */
-    max-width: 420px; /* Ancho típico de la barra lateral */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    overflow-y: auto; /* Permite desplazamiento */
-    border-right: 1px solid #eee; /* Borde suave entre la lista y el área de chat */
+    background-color: #FFFFFF;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
 }
 
-/* Estilo para cada elemento individual (la etiqueta Link en tu JSX) */
 .contact-item {
     display: flex;
     align-items: center;
     padding: 12px 15px;
-    text-decoration: none; /* Elimina el subrayado */
-    color: inherit; /* Mantiene el color de texto por defecto */
-    border-bottom: 1px solid #f0f2f5; /* Separador sutil */
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid #f0f2f5;
     transition: background-color 0.2s;
-    justify-content: space-between; /* Alinea contenido y notificaciones */
+    justify-content: space-between;
 }
 
-/* Efecto hover */
 .contact-item:hover {
     background-color: #f5f6f6;
 }
 
-/* Contenedor del avatar y nombre (primer div hijo del Link) */
-.contact-item > div:first-child {
+.contact-item>div:first-child {
     display: flex;
     align-items: center;
 }
 
-/* El avatar (imagen de perfil) */
 .contact-avatar {
-    width: 48px; /* Tamaño ligeramente más grande para avatares */
+    width: 48px;
     height: 48px;
-    border-radius: 50%; /* Avatares circulares */
+    border-radius: 50%;
     margin-right: 15px;
     object-fit: cover;
 }
 
-/* Nombre del contacto */
 .contact-item h2 {
     font-size: 16px;
     font-weight: 500;
@@ -53,7 +45,6 @@ body {
     color: #000;
 }
 
-/* Contenido del último mensaje */
 .contact-item p {
     font-size: 14px;
     color: #666;
@@ -61,27 +52,48 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 250px; /* Limita el ancho para que no se superponga con la notificación */
+    max-width: 250px;
 }
 
-/* El círculo verde de mensajes no leídos (el span) */
 .contact-item span {
-    background-color: #009688; /* El verde de acento */
+    background-color: #009688;
     color: #fff;
-    font-size: 11px; /* Fuente más pequeña para el contador */
+    font-size: 11px;
     font-weight: bold;
     border-radius: 50%;
     padding: 3px 6px;
     min-width: 10px;
     text-align: center;
     margin-left: 10px;
-    line-height: 1; /* Centrado vertical perfecto */
+    line-height: 1;
 }
 
-/* Estilos para los mensajes de estado (Cargando/No hay contactos) */
 .status-message {
     padding: 20px;
     text-align: center;
     color: #666;
     font-size: 14px;
+}
+
+/* Dark Mode */
+.dark-mode .contact-list-container {
+    background-color: #111b21;
+    border-right: 1px solid #202c33;
+}
+
+.dark-mode .contact-item {
+    border-bottom: 1px solid #202c33;
+    color: #e9edef;
+}
+
+.dark-mode .contact-item:hover {
+    background-color: #202c33;
+}
+
+.dark-mode .contact-item h2 {
+    color: #e9edef;
+}
+
+.dark-mode .contact-item p {
+    color: #8696a0;
 }

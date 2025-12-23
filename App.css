@@ -1,7 +1,7 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 
@@ -10,26 +10,26 @@ body {
 }
 
 .whatsapp-container {
-  display: flex;
-  height: 100vh;
-  background: #f0f2f5;
+    display: flex;
+    height: 100vh;
+    background: #f0f2f5;
 }
 
-/* SIDEBAR */
+
 .sidebar {
-  width: 360px;
-  background-color: #ffffff;
-  border-right: 1px solid #e9edef;
-  display: flex;
-  flex-direction: column;
+    width: 360px;
+    background-color: #ffffff;
+    border-right: 1px solid #e9edef;
+    display: flex;
+    flex-direction: column;
 }
 
-/* CHAT AREA */
+
 .chat-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .sidebar-header {
@@ -74,10 +74,71 @@ body {
     padding: 6px 10px;
 }
 
-.sidebar-search input {
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-size: 14px;
+
+/* Dark Mode Styles */
+.dark-mode {
+    background: #0b141a;
+    color: #e9edef;
+}
+
+.dark-mode .sidebar {
+    background-color: #111b21;
+    border-right: 1px solid #202c33;
+}
+
+.dark-mode .sidebar-header {
+    background-color: #202c33;
+    border-bottom: 1px solid #202c33;
+}
+
+.dark-mode .sidebar-title {
+    color: #e9edef;
+}
+
+.dark-mode .sidebar-actions button {
+    color: #e9edef;
+}
+
+.dark-mode .sidebar-search {
+    background-color: #202c33;
+}
+
+.dark-mode .sidebar-search input {
+    color: #e9edef;
+}
+
+.dark-mode .chat-area {
+    background-color: #0b141a;
+}
+
+
+@media screen and (max-width: 768px) {
+    .whatsapp-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 100%;
+        border-right: none;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .whatsapp-container.mobile-chat-active .sidebar {
+        display: none;
+    }
+
+    .chat-area {
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-color: #e5ddd5;
+    }
+
+    .whatsapp-container.mobile-chat-active .chat-area {
+        display: flex;
+    }
 }
